@@ -1,17 +1,22 @@
 package ar.edu.utn.link.correlativas.app;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-
 import ar.edu.utn.link.correlativas.Materia;
-
 import java.util.List;
 
 @Repository
 public interface RepoMateria {
 
-    public void save(Materia m);
+    public void save(Materia m) throws MateriaRepetidaException;
 
-    Materia porNombre(String nombre);
+    Page<Materia> page(Pageable pageable);
 
-    List<Materia> all();
+    public List<Materia> all();
+
+    public Materia porNombre(String nombre);
+
+    public List<Materia> porAnio(Integer anio);
+
 }
