@@ -1,20 +1,37 @@
-package ar.edu.utn.link.correlativas;
+package ar.edu.utn.link.correlativas.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 
+@Entity
+@Table(name="Materia")
 public class Materia {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
 	@NotBlank
 	private String nombre;
 	@Min(1)
 	private Integer anio;
+	@Transient
 	private Collection<Materia> correlativas;
 
 	public Materia(String nombre, Integer anio) {
 		super();
 		this.nombre = nombre;
 		this.anio = anio;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Integer getAnio() {
