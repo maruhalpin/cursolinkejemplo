@@ -1,19 +1,42 @@
 package ar.edu.utn.link.correlativas.app;
 
-public class MateriaRepetidaException extends Throwable {
+public class MateriaRepetidaException extends Exception {
 
-    private String nombreMateria;
+	private String nombreMateria;
+	
+	public MateriaRepetidaException() {
+	}
 
-    public MateriaRepetidaException(String nombre) {
-        super();
-        nombreMateria = nombre;
-    }
+	
+	
+	public String getNombreMateria() {
+		return nombreMateria;
+	}
 
-    public String getNombreMateria() {
-        return nombreMateria;
-    }
 
-    public void setNombreMateria(String nombre){
-        this.nombreMateria=nombre;
-    }
+
+	public void setNombreMateria(String nombreMateria) {
+		this.nombreMateria = nombreMateria;
+	}
+
+
+
+	public MateriaRepetidaException(String message) {
+		super();
+		nombreMateria=message;
+	}
+
+	public MateriaRepetidaException(Throwable cause) {
+		super(cause);
+	}
+
+	public MateriaRepetidaException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public MateriaRepetidaException(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
 }

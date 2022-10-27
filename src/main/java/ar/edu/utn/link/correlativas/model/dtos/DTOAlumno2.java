@@ -5,12 +5,10 @@ import org.springframework.data.rest.core.config.Projection;
 
 import ar.edu.utn.link.correlativas.model.Alumno;
 
-@Projection(name="alumno1",types = {Alumno.class})
-public interface DTOAlumno {
+@Projection(name="alumno2",types = {Alumno.class})
+public interface DTOAlumno2 {
 
-	@Value("#{target.nombre} #{target.apellido}")
+	@Value("#{target.apellido}, #{target.nombre}")
 	String getNombreCompleto();
-	@Value("#{target.materiasAprobadas.size()}")
-	int getCantMateriasAprobadas();
 	
 }

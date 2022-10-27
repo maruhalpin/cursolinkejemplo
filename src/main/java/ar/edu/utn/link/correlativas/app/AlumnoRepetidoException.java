@@ -1,19 +1,23 @@
 package ar.edu.utn.link.correlativas.app;
 
-public class AlumnoRepetidoException extends Throwable {
+public class AlumnoRepetidoException extends Exception {
 
-    private String nombreAlumno;
+	
+	
+	private String nombre;
 
-    public AlumnoRepetidoException(String nombre) {
-        super();
-        nombreAlumno = nombre;
-    }
+	public AlumnoRepetidoException(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getNombreAlumno() {
-        return nombreAlumno;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setNombreAlumno(String nombre){
-        this.nombreAlumno = nombre;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	
+
 }

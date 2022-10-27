@@ -1,39 +1,55 @@
 package ar.edu.utn.link.correlativas.model;
 
-import net.minidev.json.annotate.JsonIgnore;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
-@Table(name="Alumno")
-public class Alumno {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+public class Alumno {
+	
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank
 	private String nombre;
-	@NotBlank
+	
 	private String apellido;
+	
 	@Transient
 	@JsonIgnore
 	private List<Curso> cursos;
+	
 	@ManyToMany
-	private Collection<Materia> materiasAprobadas;
+	private Collection<Materia>  materiasAprobadas;
 	
 		
-	public Alumno(String nombre, String apellido) {
-		super();
+	public Alumno() {
+		this.materiasAprobadas = new ArrayList<Materia>();
+		     
+	}
+	
+	public Alumno(String nombre) {
+		this();
+		this.nombre = nombre;
+	}
+	
+	public Alumno(String nombre,String apellido) {
+		this();
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.materiasAprobadas = new ArrayList<>();
 	}
-
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -42,6 +58,16 @@ public class Alumno {
 		this.id = id;
 	}
 
+	
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	
 	public String getApellido() {
 		return apellido;
 	}
@@ -50,12 +76,6 @@ public class Alumno {
 		this.apellido = apellido;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 	public List<Curso> getCursos() {
 		return cursos;
 	}
@@ -63,14 +83,22 @@ public class Alumno {
 		this.cursos = cursos;
 	}
 	public Collection<Materia> getMateriasAprobadas() {
-		return materiasAprobadas;
+		return  new ArrayList<Materia>(this.materiasAprobadas);
 	}
-	public void setMateriasAprobadas(Collection<Materia> materiasAprobadas) {
+	protected void setMateriasAprobadas(Collection<Materia> materiasAprobadas) {
 		this.materiasAprobadas = materiasAprobadas;
 	}
 
 	public void inscribir(Curso curso) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void agregarMateriaAprobada(Materia materia) {
+		// chqeueos-..
+		
+		//
+		this.materiasAprobadas.add(materia);
 		
 	}
 	
